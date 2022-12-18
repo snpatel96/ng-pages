@@ -1,20 +1,31 @@
 <nav class="mt-5 mx-5">
   <ul class="pagination">
     <li [ngClass]="{ disabled: currentPage === 0 }" class="page-item">
-      <a class="page-link" href="#">Prev</a>
+      <a class="page-link" href="#" (click)="currentPage = currentPage - 1"
+        >Prev</a
+      >
     </li>
-    <li
-      class="page-item"
-      [ngClass]="{ active: currentPage === i }"
-      *ngFor="let image of images; let i = index"
-    >
-      <a class="page-link" href="#">{{ i + 1 }}</a>
-    </li>
+    <ng-container *ngFor="let image of images; let i = index">
+      <li
+        class="page-item"
+        [ngClass]="{ active: currentPage === i }"
+        *ngIf="checkWindowIndex(i)"
+      >
+        <a class="page-link" href="#" (click)="onClick(i)">{{ i + 1 }}</a>
+      </li>
+    </ng-container>
     <li
       class="page-item"
       [ngClass]="{ disabled: currentPage === images.length - 1 }"
     >
-      <a class="page-link" href="#">Next</a>
+      <a class="page-link" href="#" (click)="currentPage = currentPage + 1"
+        >Next</a
+      >
     </li>
   </ul>
 </nav>
+
+<div>
+  <h4>{{ images[currentPage].title }}</h4>
+  <img [src]="images[currentPage].url" alt="images[currentPage].title" />
+</div>
