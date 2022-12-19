@@ -1,6 +1,6 @@
 <nav class="mt-5 mx-5">
   <ul class="pagination">
-    <li [ngClass]="{ disabled: currentPage === 0 }" class="page-item">
+    <li [appClass]="{ disabled: currentPage === 0 }" class="page-item">
       <a class="page-link" href="#" (click)="currentPage = currentPage - 1"
         >Prev</a
       >
@@ -8,7 +8,7 @@
     <ng-container *ngFor="let image of images; let i = index">
       <li
         class="page-item"
-        [ngClass]="{ active: currentPage === i }"
+        [appClass]="{ active: currentPage === i }"
         *ngIf="checkWindowIndex(i)"
       >
         <a class="page-link" href="#" (click)="onClick(i)">{{ i + 1 }}</a>
@@ -16,7 +16,7 @@
     </ng-container>
     <li
       class="page-item"
-      [ngClass]="{ disabled: currentPage === images.length - 1 }"
+      [appClass]="{ disabled: currentPage === images.length - 1 }"
     >
       <a class="page-link" href="#" (click)="currentPage = currentPage + 1"
         >Next</a
